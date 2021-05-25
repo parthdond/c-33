@@ -10,7 +10,7 @@ var bird, slingshot;
 
 var gameState = "onSling";
 var bg = "sprites/bg1.png";
-
+var score = 0;
 
 function preload() {
     getTime();
@@ -50,7 +50,10 @@ function draw(){
     if(backgroundImg)
         background(backgroundImg);
     
+    textSize(20)    
+    text("score:"+score,1000,100)
     
+
     Engine.update(engine);
     //strokeWeight(4);
     box1.display();
@@ -87,6 +90,8 @@ function mouseReleased(){
 function keyPressed(){
     if(keyCode===32)
     slingshot.attach(bird.body);
+    bird.trajectory=[]
+    Matter.Body.setPosition(bird.body, {x:200,y:50})
 }
 
 async function getTime(){
